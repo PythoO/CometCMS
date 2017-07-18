@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Report{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<header class="marketing-hero text-center">
+<h2 class="">Report</h2>
+</header>
+
+<article class="row">
+  <table>
+  <caption>Most Expensive Sandwiches by City</caption>
+  <tr>
+    <th scope="column">Rank</th>
+    <th scope="column">City</th>
+    <th scope="column">Price</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td scope="row">Campbell, CA</td>
+    <td scope="row">New York, NY</td>
+    <td scope="row">Sandwich, IL</td>
+  </tr>
+  <tr>
+    <td>$12.99</td>
+    <td>$9.99</td>
+    <td>$8.99</td>
+  </tr>
+</table>
+
+</article>
+
+{% endblock %}

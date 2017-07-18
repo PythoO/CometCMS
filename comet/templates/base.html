@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/vendor/foundation.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/vendor/foundation-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/styles.min.css') }}">
+    <title>{% block title %}{% endblock %} - Comet</title>
+    {% endblock %}
+</head>
+<body>
+<div class="off-canvas-wrapper">
+
+
+    <div class="">
+        <nav class="topbar">
+            <ul class="menu">
+                <li class="topbar-title">
+                    <a href="{{ url_for('home.home') }}"><i class="fi-compass"></i>Comet <strong>CMS</strong></a>
+                </li>
+                <li><a href="{{ url_for('content.show') }}"><i class="fi-page-multiple"></i>Content</a></li>
+                <li><a href="{{ url_for('block.show') }}"><i class="fi-layout"></i>Block</a></li>
+                <li><a href="{{ url_for('people.show') }}"><i class="fi-torsos"></i>People</a></li>
+                <li><a href="{{ url_for('config.show') }}"><i class="fi-widget"></i>Config</a></li>
+                <li><a href="{{ url_for('report.show') }}"><i class="fi-clipboard-notes"></i>Report</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="page-content">
+        {% block body %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='dist/assets/js/vendor/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/assets/js/vendor/what-input.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/assets/js/vendor/foundation.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/assets/js/app.js') }}"></script>
+
+</div>
+
+<div class="row text-center">
+    {% include "footer.html" %}
+</div>
+</body>
+</html>
