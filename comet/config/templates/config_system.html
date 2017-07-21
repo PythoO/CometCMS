@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Config{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block hero %}Basic Settings{% endblock %}
+
+{% block body %}
+<div class="row">
+    <form method="POST" action="{{ url_for('config.system') }}">
+        {{ form.csrf_token }}
+        <div class="row callout">
+            <h3>System</h3>
+            <div class="medium-6 columns">
+                {{ form.site_name.label }}
+                {{ form.site_name(size=20) }}
+            </div>
+            <div class="medium-6 columns">
+                {{ form.email_address.label }}
+                {{ form.email_address(size=20) }}
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <input type="submit" class="button" value="Save">
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

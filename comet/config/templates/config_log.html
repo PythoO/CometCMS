@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Config{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block hero %}Logging and errors{% endblock %}
+
+{% block body %}
+
+<div class="row large-9">
+
+    <div class="row small-up-1 medium-up-2 large-up-2">
+        <div class="column">
+            <select id="filter-category" class="float-left large-7">
+                <option value="info">Info</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
+                <option value="critical">Critical</option>
+            </select>
+            <a href="javascript:void(0);" id="log-filter" class="button float-left large-2">Filter</a>
+            <a href="javascript:void(0);" id="reset-filter" class="button float-right large-2">Reset</a>
+        </div>
+        <div class="column">
+            <a href="{{ url_for('config.clear_log')}}" class="button float-right">Clear logs</a>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th scope="column">Date</th>
+            <th scope="column">Severity</th>
+            <th scope="column">Message</th>
+        </tr>
+        {%for log in logs %}
+        {%if log[1] == 'CRITICAL' or log[1] == 'ERROR' %}
+        <tr class="callout alert {{ log[1] |lower }}">
+            {% else %}
+        <tr class="callout {{ log[1] |lower }}">
+            {%endif %}
+            <td>{{ log[0] }}</td>
+            <td>{{ log[1] }}</td>
+            <td>{{ log[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

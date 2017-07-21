@@ -9,7 +9,7 @@
     {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/vendor/foundation.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/vendor/foundation-icons.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/assets/css/styles.css') }}">
     <title>{% block title %}{% endblock %} - Comet</title>
     {% endblock %}
 </head>
@@ -33,6 +33,21 @@
     </div>
 
     <div class="page-content">
+
+        <header class="marketing-hero text-center">
+            <h2 class="">{% block hero %}{% endblock %}</h2>
+        </header>
+
+        <div class="row large-9">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="callout {{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
         {% block body %}{% endblock %}
     </div>
 
@@ -41,6 +56,7 @@
     <script src="{{ url_for('static', filename='dist/assets/js/vendor/foundation.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/assets/js/app.js') }}"></script>
 
+     {% block js %}{% endblock %}
 </div>
 
 <div class="row text-center">

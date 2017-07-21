@@ -6,7 +6,7 @@ var source = './src';
 var destination = '../dist';
 
 gulp.task('clean', function(){
-    return gulp.src(destination + '/assets/css/*.css', {read: false})
+    return gulp.src([destination + '/assets/css/*.css', destination + '/assets/js/*.js' ], {read: false})
         .pipe(plugins.clean({force: true}));
 });
 
@@ -19,15 +19,12 @@ gulp.task('css', function() {
     .pipe(gulp.dest(destination + '/assets/css/'));
 });
 
-gulp.task('minify', function () {
-  return gulp.src(destination + '/assets/css/*.css')
-    .pipe(plugins.csso())
-    .pipe(plugins.rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(destination + '/assets/css/'));
+gulp.task('js', function() {
+    return gulp.src(source + '/assets/js/*.js')
+        .pipe(plugins.concat('app.js'))
+        .pipe(gulp.dest(destination + '/assets/js/'));
 });
 
-gulp.task('build', ['clean', 'css', 'minify']);
-// Tâche par défaut
+gulp.task('build', ['clean', 'css', 'js']);
+
 gulp.task('default', ['build']);
